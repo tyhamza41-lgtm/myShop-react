@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# shopEco
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A clean, responsive storefront for discovering everyday products. shopEco loads product data from an API, lets shoppers search by product name, and presents product images, prices, and stock quantities in a simple catalog.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Responsive storefront layout
+- Product catalog with images, prices, and stock quantities
+- Live product search
+- Loading, empty, and API error states
+- API endpoint configured through an environment variable
 
-### `npm start`
+## Built with
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- Axios
+- Create React App
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting started
 
-### `npm test`
+### Requirements
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js and npm
+- Access to a product API with a response containing a `carts` array and a `products` array on its first cart
 
-### `npm run build`
+### Install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Configure the API
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Create a `.env` file in the project root:
 
-### `npm run eject`
+```env
+REACT_APP_API_URL=https://dummyjson.com/carts
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The app reads products from `carts[0].products`. Keep `.env` out of version control; it is ignored by Git. After changing environment variables, restart the development server.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> Create React App embeds `REACT_APP_*` values into the client bundle. Do not put secrets or private API keys in these variables.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Start the development server
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm start
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Available scripts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Command | Description |
+| --- | --- |
+| `npm start` | Start the local development server |
+| `npm test -- --watchAll=false` | Run tests once (the project currently has no test files) |
+| `npm run build` | Create an optimized production build in `build/` |
 
-### Code Splitting
+## Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Run `npm run build` and deploy the generated `build/` directory to a static hosting provider. Configure `REACT_APP_API_URL` in the provider's build environment as well; the local `.env` file is ignored and is not included in the deployment.
 
-### Analyzing the Bundle Size
+## Project structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```text
+src/
+  components/
+    Header/       Brand and product search
+    Product/      Product list and product cards
+    Hero.js       Storefront hero section
+  App.js          API loading and product search state
+  App.css         Storefront styles
+  index.css       Global styles
+```
